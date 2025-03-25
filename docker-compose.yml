@@ -6,6 +6,7 @@ services:
       - "12445:12445"
     networks:
       - web-network
+    restart: unless-stopped
 
 networks:
   web-network:
