@@ -1,6 +1,6 @@
 > [!WARNING]
 > ## *Silent langauge
-> This repo was forked for only educational purposes and second-development purposes in the future. Please note that I do NOT own any codes from this repo. All copyright belongs to @imsyy.
+> This repo was forked for only educational purposes and secondary development purposes in the future. Please note that I do NOT own any codes from this repo. All copyright belongs to @imsyy.
 > The entire repo was only used for references and will be DELETED once the rewrite is completed. No copyright infringement was involved.
 
 简体中文 | [English](./README_EN.md)
