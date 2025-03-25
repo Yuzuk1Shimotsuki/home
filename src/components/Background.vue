@@ -17,7 +17,7 @@
         :href="bgUrl"
         target="_blank"
       >
-        下载壁纸
+        下載壁紙
       </a>
     </Transition>
   </div>
@@ -32,11 +32,11 @@ const bgUrl = ref(null);
 const imgTimeout = ref(null);
 const emit = defineEmits(["loadComplete"]);
 
-// 壁纸随机数
-// 请依据文件夹内的图片个数修改 Math.random() 后面的第一个数字
+// Wallpaper random number
+// Please modify the first number after Math.random() according to the number of images in the folder
 const bgRandom = Math.floor(Math.random() * 10 + 1);
 
-// 更换壁纸链接
+// Change wallpaper link
 const changeBg = (type) => {
   if (type == 0) {
     bgUrl.value = `/images/background${bgRandom}.jpg`;
@@ -49,7 +49,7 @@ const changeBg = (type) => {
   }
 };
 
-// 图片加载完成
+// Image load complete
 const imgLoadComplete = () => {
   imgTimeout.value = setTimeout(
     () => {
@@ -59,18 +59,18 @@ const imgLoadComplete = () => {
   );
 };
 
-// 图片动画完成
+// Image animation complete
 const imgAnimationEnd = () => {
-  console.log("壁纸加载且动画完成");
-  // 加载完成事件
+  console.log("Wallpaper loaded and animation completed");
+  // Load complete event
   emit("loadComplete");
 };
 
-// 图片显示失败
+// Image display error
 const imgLoadError = () => {
-  console.error("壁纸加载失败：", bgUrl.value);
+  console.error("Wallpaper loading failed:", bgUrl.value);
   ElMessage({
-    message: "壁纸加载失败，已临时切换回默认",
+    message: "壁紙載入失敗，已臨時切換回預設背景",
     icon: h(Error, {
       theme: "filled",
       fill: "#efefef",
@@ -79,7 +79,7 @@ const imgLoadError = () => {
   bgUrl.value = `/images/background${bgRandom}.jpg`;
 };
 
-// 监听壁纸切换
+// Watch for wallpaper change
 watch(
   () => store.coverType,
   (value) => {
@@ -88,7 +88,7 @@ watch(
 );
 
 onMounted(() => {
-  // 加载壁纸
+  // Load wallpaper
   changeBg(store.coverType);
 });
 
