@@ -1,13 +1,13 @@
 <template>
   <div :class="store.mobileOpenState ? 'right' : 'right hidden'">
-    <!-- 移动端 Logo -->
+    <!-- Mobile Logo -->
     <div class="logo text-hidden" @click="store.mobileFuncState = !store.mobileFuncState">
       <span class="bg">{{ siteUrl[0] }}</span>
       <span class="sm">.{{ siteUrl[1] }}</span>
     </div>
-    <!-- 功能区 -->
+    <!-- Function Area -->
     <Func />
-    <!-- 网站链接 -->
+    <!-- Website Links -->
     <Link />
   </div>
 </template>
@@ -18,11 +18,11 @@ import Func from "@/views/Func/index.vue";
 import Link from "@/components/Links.vue";
 const store = mainStore();
 
-// 站点链接
+// Site URL
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
   if (!url) return "imsyy.top".split(".");
-  // 判断协议前缀
+  // Check protocol prefix
   if (url.startsWith("http://") || url.startsWith("https://")) {
     const urlFormat = url.replace(/^(https?:\/\/)/, "");
     return urlFormat.split(".");

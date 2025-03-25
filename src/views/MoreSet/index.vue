@@ -18,14 +18,14 @@
         </div>
         <div class="version">
           <div class="num">v&nbsp;{{ config.version }}</div>
-          <el-tooltip content="Github 源代码仓库" placement="right" :show-arrow="false">
+          <el-tooltip content="Github 原始碼" placement="right" :show-arrow="false">
             <github-one class="github" theme="outline" size="24" @click="jumpTo(config.github)" />
           </el-tooltip>
         </div>
         <el-card class="update">
           <template #header>
             <div class="card-header">
-              <span>更新日志</span>
+              <span>更新日誌</span>
             </div>
           </template>
           <div class="upnote">
@@ -43,7 +43,7 @@
       <el-col :span="12" class="right">
         <div class="title">
           <setting-two theme="filled" size="28" fill="#ffffff60" />
-          <span class="name">全局设置</span>
+          <span class="name">全局設置</span>
         </div>
         <Set />
       </el-col>
@@ -60,11 +60,11 @@ import config from "@/../package.json";
 const store = mainStore();
 const closeShow = ref(false);
 
-// 站点链接
+// Site URL
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
   if (!url) return "imsyy.top".split(".");
-  // 判断协议前缀
+  // Check protocol prefix
   if (url.startsWith("http://") || url.startsWith("https://")) {
     const urlFormat = url.replace(/^(https?:\/\/)/, "");
     return urlFormat.split(".");
@@ -72,18 +72,18 @@ const siteUrl = computed(() => {
   return url.split(".");
 });
 
-// 更新日志
+// Update log
 const upData = reactive({
   new: [
-    "采用 Vue 进行重构",
-    "音乐歌单支持快速自定义",
-    "壁纸支持个性化设置",
-    "音乐播放器支持音量控制",
+    "採用 Vue 進行重構",
+    "音樂歌單支持快速自定義",
+    "桌布支持個性化設置",
+    "音樂播放器支持音量控制",
   ],
-  fix: ["修复天气 API", "时光胶囊显示错误", "移动端动画及细节", "图标更换为 IconPark"],
+  fix: ["修復天氣 API", "時光膠囊顯示錯誤", "移動端動畫及細節", "圖標更換為 IconPark"],
 });
 
-// 跳转源代码仓库
+// Jump to source code repository
 const jumpTo = (url) => {
   window.open(url);
 };

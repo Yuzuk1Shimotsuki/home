@@ -1,5 +1,5 @@
 <template>
-  <!-- 社交链接 -->
+  <!-- Social Links -->
   <div class="social">
     <div class="link">
       <a
@@ -8,7 +8,7 @@
         :href="item.url"
         target="_blank"
         @mouseenter="socialTip = item.tip"
-        @mouseleave="socialTip = '通过这里联系我吧'"
+        @mouseleave="socialTip = '通過這裡聯絡我吧'"
       >
         <img class="icon" :src="item.icon" height="24" />
       </a>
@@ -20,8 +20,8 @@
 <script setup>
 import socialLinks from "@/assets/socialLinks.json";
 
-// 社交链接提示
-const socialTip = ref("通过这里联系我吧");
+// Social link tooltip
+const socialTip = ref("通過這裡聯絡我吧");
 </script>
 
 <style lang="scss" scoped>

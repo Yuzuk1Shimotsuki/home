@@ -6,7 +6,7 @@
     @mouseleave="openMusicShow = false"
     @click.stop
   >
-    <!-- 打开音乐面板 -->
+    <!-- Open music panel -->
     <Transition name="el-fade-in-linear">
       <div
         class="open-music"
@@ -14,10 +14,10 @@
         @click="store.musicOpenState = true"
       >
         <music-menu theme="filled" size="18" fill="#efefef" />
-        <span>打开音乐播放器</span>
+        <span>開啟音樂播放器</span>
       </div>
     </Transition>
-    <!-- 一言内容 -->
+    <!-- Hitokoto content -->
     <Transition name="el-fade-in-linear" mode="out-in">
       <div :key="hitokotoData.text" class="content" @click="updateHitokoto">
         <span class="text">{{ hitokotoData.text }}</span>
@@ -35,16 +35,16 @@ import debounce from "@/utils/debounce.js";
 
 const store = mainStore();
 
-// 开启音乐面板按钮显隐
+// Open music panel button visibility
 const openMusicShow = ref(false);
 
-// 一言数据
+// Hitokoto data
 const hitokotoData = reactive({
-  text: "这里应该显示一句话",
+  text: "這裡應該顯示一句話",
   from: "無名",
 });
 
-// 获取一言数据
+// Get hitokoto data
 const getHitokotoData = async () => {
   try {
     const result = await getHitokoto();
@@ -52,20 +52,20 @@ const getHitokotoData = async () => {
     hitokotoData.from = result.from;
   } catch (error) {
     ElMessage({
-      message: "一言获取失败",
+      message: "一言獲取失敗",
       icon: h(Error, {
         theme: "filled",
         fill: "#efefef",
       }),
     });
-    hitokotoData.text = "这里应该显示一句话";
+    hitokotoData.text = "這裡應該顯示一句話";
     hitokotoData.from = "無名";
   }
 };
 
-// 更新一言数据
+// Update hitokoto data
 const updateHitokoto = () => {
-  // 防抖
+  // Debounce
   debounce(() => {
     getHitokotoData();
   }, 500);

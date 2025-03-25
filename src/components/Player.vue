@@ -28,23 +28,23 @@ import APlayer from "@worstone/vue-aplayer";
 
 const store = mainStore();
 
-// 获取播放器 DOM
+// Get player DOM
 const player = ref(null);
 
-// 歌曲播放列表
+// Song playlist
 const playList = ref([]);
 
-// 歌曲播放项
+// Current playing index
 const playIndex = ref(0);
 
-// 配置项
+// Configuration options
 const props = defineProps({
-  // 主题色
+  // Theme color
   theme: {
     type: String,
     default: "#efefef",
   },
-  // 默认音量
+  // Default volume
   volume: {
     type: Number,
     default: 0.7,
@@ -52,12 +52,12 @@ const props = defineProps({
       return value >= 0 && value <= 1;
     },
   },
-  // 歌曲服务器 ( netease-网易云, tencent-qq音乐 )
+  // Song server (netease-NetEase Cloud Music, tencent-QQ Music)
   songServer: {
     type: String,
     default: "netease", //'netease' | 'tencent'
   },
-  // 播放类型 ( song-歌曲, playlist-播放列表, album-专辑, search-搜索, artist-艺术家 )
+  // Play type (song-single song, playlist-playlist, album-album, search-search, artist-artist)
   songType: {
     type: String,
     default: "playlist",
@@ -67,12 +67,12 @@ const props = defineProps({
     type: String,
     default: "7452421335",
   },
-  // 列表是否默认折叠
+  // Whether the list is folded by default
   listFolded: {
     type: Boolean,
     default: false,
   },
-  // 列表最大高度
+  // List maximum height
   listMaxHeight: {
     type: Number,
     default: 420,
@@ -83,17 +83,17 @@ const listHeight = computed(() => {
   return props.listMaxHeight + "px";
 });
 
-// 初始化播放器
+// Initialize player
 onMounted(() => {
   nextTick(() => {
     try {
       getPlayerList(props.songServer, props.songType, props.songId).then((res) => {
         console.log(res);
-        // 更改播放器加载状态
+        // Change player loading status
         store.musicIsOk = true;
-        // 生成歌单
+        // Generate playlist
         playList.value = res;
-        console.log("音乐加载完成");
+        console.log("音樂載入完成");
         console.log(playList.value);
         console.log(playIndex.value, playList.value.length, props.volume);
       });
@@ -101,7 +101,7 @@ onMounted(() => {
       console.error(err);
       store.musicIsOk = false;
       ElMessage({
-        message: "播放器加载失败",
+        message: "播放器載入失敗",
         grouping: true,
         icon: h(PlayWrong, {
           theme: "filled",
@@ -112,13 +112,13 @@ onMounted(() => {
   });
 });
 
-// 播放
+// Play
 const onPlay = () => {
   console.log("播放");
   playIndex.value = player.value.aplayer.index;
-  // 播放状态
+  // Playing state
   store.setPlayerState(player.value.audioRef.paused);
-  // 储存播放器信息
+  // Store player information
   store.setPlayerData(playList.value[playIndex.value].name, playList.value[playIndex.value].artist);
   ElMessage({
     message: store.getPlayerData.name + " - " + store.getPlayerData.artist,
@@ -130,12 +130,12 @@ const onPlay = () => {
   });
 };
 
-// 暂停
+// Pause
 const onPause = () => {
   store.setPlayerState(player.value.audioRef.paused);
 };
 
-// 音频时间更新事件
+// Audio time update event
 const onTimeUp = () => {
   let lyrics = player.value.aplayer.lyrics[playIndex.value];
   let lyricIndex = player.value.aplayer.lyricIndex;
@@ -144,24 +144,24 @@ const onTimeUp = () => {
   }
   let lrc = lyrics[lyricIndex][1];
   if (lrc === "Loading") {
-    lrc = "歌词加载中";
+    lrc = "歌詞載入中";
   } else if (lrc === "Not available") {
-    lrc = "歌词加载失败";
+    lrc = "歌詞載入失敗";
   }
   store.setPlayerLrc(lrc);
 };
 
-// 切换播放暂停事件
+// Toggle play/pause event
 const playToggle = () => {
   player.value.toggle();
 };
 
-// 切换音量事件
+// Change volume event
 const changeVolume = (value) => {
   player.value.setVolume(value, false);
 };
 
-// 切换上下曲
+// Switch to previous/next song
 const changeSong = (type) => {
   type === 0 ? player.value.skipBack() : player.value.skipForward();
   nextTick(() => {
@@ -169,18 +169,18 @@ const changeSong = (type) => {
   });
 };
 
-// 切换歌曲列表状态
+// Toggle song list status
 const toggleList = () => {
   player.value.toggleList();
 };
 
-// 加载音频错误
+// Audio loading error
 const loadMusicError = () => {
   let notice = "";
   if (playList.value.length > 1) {
-    notice = "播放歌曲出现错误，播放器将在 2s 后进行下一首";
+    notice = "播放歌曲出現錯誤，播放器將在 2s 後進行下一首";
   } else {
-    notice = "播放歌曲出现错误";
+    notice = "播放歌曲出現錯誤";
   }
   ElMessage({
     message: notice,
@@ -192,11 +192,11 @@ const loadMusicError = () => {
     }),
   });
   console.error(
-    "播放歌曲: " + player.value.aplayer.audio[player.value.aplayer.index].name + " 出现错误",
+    "播放歌曲: " + player.value.aplayer.audio[player.value.aplayer.index].name + " 出現錯誤",
   );
 };
 
-// 暴露子组件方法
+// Expose child component methods
 defineExpose({ playToggle, changeVolume, changeSong, toggleList });
 </script>
 

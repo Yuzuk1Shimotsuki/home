@@ -4,9 +4,9 @@
       <Icon size="20">
         <Link />
       </Icon>
-      <span class="title">网站列表</span>
+      <span class="title">網站列表</span>
     </div>
-    <!-- 网站列表 -->
+    <!-- Website list -->
     <Swiper
       v-if="siteLinks[0]"
       :modules="[Pagination, Mousewheel]"
@@ -42,8 +42,8 @@
 
 <script setup>
 import { Icon } from "@vicons/utils";
-// 可前往 https://www.xicons.org 自行挑选并在此处引入
-import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire, LaptopCode } from "@vicons/fa"; // 注意使用正确的类别
+// You can go to https://www.xicons.org to select and import icons here
+import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire, LaptopCode } from "@vicons/fa"; // Note: Use the correct category
 import { mainStore } from "@/store";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Mousewheel } from "swiper/modules";
@@ -51,7 +51,7 @@ import siteLinks from "@/assets/siteLinks.json";
 
 const store = mainStore();
 
-// 计算网站链接
+// Calculate website links
 const siteLinksList = computed(() => {
   const result = [];
   for (let i = 0; i < siteLinks.length; i += 6) {
@@ -61,7 +61,7 @@ const siteLinksList = computed(() => {
   return result;
 });
 
-// 网站链接图标
+// Website link icons
 const siteIcon = {
   Blog,
   Cloud,
@@ -72,9 +72,9 @@ const siteIcon = {
   LaptopCode,
 };
 
-// 链接跳转
+// Link jump
 const jumpLink = (data) => {
-  if (data.name === "音乐" && store.musicClick) {
+  if (data.name === "音樂" && store.musicClick) {
     if (typeof $openList === "function") $openList();
   } else {
     window.open(data.link, "_blank");

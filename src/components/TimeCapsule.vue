@@ -2,23 +2,23 @@
   <div class="time-capsule">
     <div class="title">
       <hourglass-full theme="two-tone" size="24" :fill="['#efefef', '#00000020']" />
-      <span>时光胶囊</span>
+      <span>時光膠囊</span>
     </div>
     <div v-if="timeData" class="all-capsule">
       <div v-for="(item, tag, index) in timeData" :key="index" class="capsule-item">
         <div class="item-title">
           <span class="percentage">
-            {{ item.name }}已度过
+            {{ item.name }}已度過
             <strong>{{ item.passed }}</strong>
-            {{ tag === "day" ? "小时" : "天" }}
+            {{ tag === "day" ? "小時" : "天" }}
           </span>
           <span class="remaining">
-            剩余&nbsp;{{ item.remaining }}&nbsp;{{ tag === "day" ? "小时" : "天" }}
+            剩餘&nbsp;{{ item.remaining }}&nbsp;{{ tag === "day" ? "小時" : "天" }}
           </span>
         </div>
         <el-progress :text-inside="true" :stroke-width="20" :percentage="parseFloat(item.percentage)" />
       </div>
-      <!-- 建站日期 -->
+      <!-- Site establish date -->
       <div v-if="store.siteStartShow" class="capsule-item start">
         <div class="item-title">{{ startDateText }}</div>
       </div>
@@ -32,7 +32,7 @@ import { getTimeCapsule, siteDateStatistics } from "@/utils/getTime.js";
 import { mainStore } from "@/store";
 const store = mainStore();
 
-// 进度条数据
+// Progress bar data
 const timeData = ref(getTimeCapsule());
 const startDate = ref(import.meta.env.VITE_SITE_START);
 const startDateText = ref(null);

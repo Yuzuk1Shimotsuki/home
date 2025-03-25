@@ -19,7 +19,7 @@ import { mainStore } from "@/store";
 
 const store = mainStore();
 
-// 配置
+// Configuration
 const siteName = import.meta.env.VITE_SITE_NAME;
 </script>
 

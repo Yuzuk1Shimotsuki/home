@@ -1,5 +1,5 @@
 <template>
-  <!-- 基本信息 -->
+  <!-- Basic Information -->
   <div class="message">
     <!-- Logo -->
     <div class="logo">
@@ -9,7 +9,7 @@
         <span class="sm">.{{ siteUrl[1] }}</span>
       </div>
     </div>
-    <!-- 简介 -->
+    <!-- Introduction -->
     <div class="description cards" @click="changeBox">
       <div class="content">
         <Icon size="16">
@@ -36,13 +36,13 @@ import { Error } from "@icon-park/vue-next";
 import { mainStore } from "@/store";
 const store = mainStore();
 
-// 主页站点logo
+// Homepage site logo
 const siteLogo = import.meta.env.VITE_SITE_MAIN_LOGO;
-// 站点链接
+// Site URL
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
   if (!url) return "imsyy.top".split(".");
-  // 判断协议前缀
+  // Check protocol prefix
   if (url.startsWith("http://") || url.startsWith("https://")) {
     const urlFormat = url.replace(/^(https?:\/\/)/, "");
     return urlFormat.split(".");
@@ -50,19 +50,19 @@ const siteUrl = computed(() => {
   return url.split(".");
 });
 
-// 简介区域文字
+// Description area text
 const descriptionText = reactive({
   hello: import.meta.env.VITE_DESC_HELLO,
   text: import.meta.env.VITE_DESC_TEXT,
 });
 
-// 切换右侧功能区
+// Switch right function area
 const changeBox = () => {
   if (store.getInnerWidth >= 721) {
     store.boxOpenState = !store.boxOpenState;
   } else {
     ElMessage({
-      message: "当前页面宽度不足以开启盒子",
+      message: "目前頁面寬度不足以開啟盒子",
       grouping: true,
       icon: h(Error, {
         theme: "filled",
@@ -72,7 +72,7 @@ const changeBox = () => {
   }
 };
 
-// 监听状态变化
+// Monitor state changes
 watch(
   () => store.boxOpenState,
   (value) => {

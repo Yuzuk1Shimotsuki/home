@@ -1,5 +1,5 @@
 <template>
-  <!-- 音乐控制面板 -->
+  <!-- Music Control Panel -->
   <div
     class="music"
     @mouseenter="volumeShow = true"
@@ -7,7 +7,7 @@
     v-show="store.musicOpenState"
   >
     <div class="btns">
-      <span @click="openMusicList()">音乐列表</span>
+      <span @click="openMusicList()">音樂列表</span>
       <span @click="store.musicOpenState = false">回到一言</span>
     </div>
     <div class="control">
@@ -25,7 +25,7 @@
         <span>{{
           store.getPlayerData.name
             ? store.getPlayerData.name + " - " + store.getPlayerData.artist
-            : "未播放音乐"
+            : "未播放音樂"
         }}</span>
       </div>
       <div class="volume" v-show="volumeShow">
@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-  <!-- 音乐列表弹窗 -->
+  <!-- Music List Popup -->
   <Transition name="fade" mode="out-in">
     <div class="music-list" v-show="musicListShow" @click="closeMusicList()">
       <Transition name="zoom">
@@ -83,11 +83,11 @@ import Player from "@/components/Player.vue";
 import { mainStore } from "@/store";
 const store = mainStore();
 
-// 音量条数据
+// Volume bar data
 const volumeShow = ref(false);
 const volumeNum = ref(store.musicVolume ? store.musicVolume : 0.7);
 
-// 播放列表数据
+// Playlist data
 const musicListShow = ref(false);
 const playerRef = ref(null);
 const playerData = reactive({
@@ -96,30 +96,30 @@ const playerData = reactive({
   id: import.meta.env.VITE_SONG_ID,
 });
 
-// 开启播放列表
+// Open playlist
 const openMusicList = () => {
   musicListShow.value = true;
   playerRef.value.toggleList();
 };
 
-// 关闭播放列表
+// Close playlist
 const closeMusicList = () => {
   musicListShow.value = false;
   playerRef.value.toggleList();
 };
 
-// 音乐播放暂停
+// Music play/pause
 const changePlayState = () => {
   playerRef.value.playToggle();
 };
 
-// 音乐上下曲
+// Previous/next track
 const changeMusicIndex = (type) => {
   playerRef.value.changeSong(type);
 };
 
 onMounted(() => {
-  // 空格键事件
+  // Spacebar event
   window.addEventListener("keydown", (e) => {
     if (!store.musicIsOk) {
       return;
@@ -128,11 +128,11 @@ onMounted(() => {
       changePlayState();
     }
   });
-  // 挂载方法至 window
+  // Mount method to window
   window.$openList = openMusicList;
 });
 
-// 监听音量变化
+// Monitor volume changes
 watch(
   () => volumeNum.value,
   (value) => {
@@ -292,7 +292,7 @@ watch(
   }
 }
 
-// 弹窗动画
+// Popup animation
 .zoom-enter-active {
   animation: zoom 0.4s ease-in-out;
 }

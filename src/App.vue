@@ -1,9 +1,9 @@
 <template>
-  <!-- 載入 -->
+  <!-- Loading -->
   <Loading />
-  <!-- 桌布 -->
+  <!-- Background -->
   <Background @loadComplete="loadComplete" />
-  <!-- 主介面 -->
+  <!-- Main Interface -->
   <Transition name="fade" mode="out-in">
     <main id="main" v-if="store.imgLoadStatus">
       <div class="container" v-show="!store.backgroundShow">
@@ -16,7 +16,7 @@
           <MoreSet />
         </section>
       </div>
-      <!-- 行動裝置選單按鈕 -->
+      <!-- Mobile Menu Button -->
       <Icon
         class="menu"
         size="24"
@@ -25,7 +25,7 @@
       >
         <component :is="store.mobileOpenState ? CloseSmall : HamburgerButton" />
       </Icon>
-      <!-- 頁尾 -->
+      <!-- Footer -->
       <Transition name="fade" mode="out-in">
         <Footer class="f-ter" v-show="!store.backgroundShow && !store.setOpenState" />
       </Transition>
@@ -50,22 +50,22 @@ import config from "@/../package.json";
 
 const store = mainStore();
 
-// 頁面寬度
+// Page width
 const getWidth = () => {
   store.setInnerWidth(window.innerWidth);
 };
 
-// 載入完成事件
+// Load complete event
 const loadComplete = () => {
   nextTick(() => {
-    // 歡迎提示
+    // Welcome prompt
     helloInit();
-    // 默哀模式
+    // Mourning mode
     checkDays();
   });
 };
 
-// 監聽寬度變化
+// Monitor width changes
 watch(
   () => store.innerWidth,
   (value) => {
@@ -77,10 +77,10 @@ watch(
 );
 
 onMounted(() => {
-  // 自定義滑鼠
+  // Custom cursor
   cursorInit();
 
-  // 屏蔽右鍵
+  // Disable right-click
   document.oncontextmenu = () => {
     ElMessage({
       message: "為了提升用户瀏覽體驗，本站已禁用右鍵單擊",
@@ -90,7 +90,7 @@ onMounted(() => {
     return false;
   };
 
-  // 滑鼠中鍵事件
+  // Middle mouse button event
   window.addEventListener("mousedown", (event) => {
     if (event.button == 1) {
       store.backgroundShow = !store.backgroundShow;
@@ -101,11 +101,11 @@ onMounted(() => {
     }
   });
 
-  // 監聽當前頁面寬度
+  // Monitor current page width
   getWidth();
   window.addEventListener("resize", getWidth);
 
-  // 控制台輸出
+  // Console output
   const styleTitle1 = "font-size: 20px;font-weight: 600;color: rgb(244,167,89);";
   const styleTitle2 = "font-size:12px;color: rgb(244,167,89);";
   const styleContent = "color: rgb(30,152,255);";

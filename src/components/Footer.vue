@@ -13,14 +13,14 @@
           {{ fullYear }}
           <a :href="siteUrl">{{ siteAuthor }}</a>
         </span>
-        <!-- 以下信息请不要修改哦 -->
+        <!-- Please do not modify the following information -->
         <span class="hidden">
           &amp;&nbsp;Made&nbsp;by
           <a :href="config.github" target="_blank">
             {{ config.author }}
           </a>
         </span>
-        <!-- 站点备案 -->
+        <!-- Site filing/registration -->
         <span>
           &amp;
           <a v-if="siteIcp" href="https://beian.miit.gov.cn" target="_blank">
@@ -49,7 +49,7 @@ import config from "@/../package.json";
 const store = mainStore();
 const fullYear = new Date().getFullYear();
 
-// 加载配置数据
+// Load configuration data
 // const siteStartDate = ref(import.meta.env.VITE_SITE_START);
 const startYear = ref(
   import.meta.env.VITE_SITE_START?.length >= 4 ? 
@@ -60,7 +60,7 @@ const siteAuthor = ref(import.meta.env.VITE_SITE_AUTHOR);
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
   if (!url) return "https://www.imsyy.top";
-  // 判断协议前缀
+  // Check protocol prefix
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     return "//" + url;
   }
@@ -79,7 +79,7 @@ const siteUrl = computed(() => {
   text-align: center;
   z-index: 0;
   font-size: 14px;
-  // 文字不换行
+  // Prevent text wrapping
   word-break: keep-all;
   white-space: nowrap;
   .power {

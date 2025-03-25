@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import "@/style/style.scss";
 import App from "@/App.vue";
-// 引入 pinia
+// Import pinia
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 // swiper
@@ -16,7 +16,7 @@ app.mount("#app");
 
 // PWA
 navigator.serviceWorker.addEventListener("controllerchange", () => {
-  // 弹出更新提醒
-  console.log("站点已更新，刷新后生效");
-  ElMessage("站点已更新，刷新后生效");
+  // Pop up update notification
+  console.log("站點已更新，刷新後生效");
+  ElMessage("站點已更新，刷新後生效");
 });
