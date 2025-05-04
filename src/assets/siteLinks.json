@@ -1,12 +1,12 @@
 [
   {
     "icon": "Blog",
-    "name": "博客",
-    "link": "https://blog.lolicon.wtf/"
+    "name": "網誌",
+    "link": "https://moe.lolicon.wtf/"
   },
   {
     "icon": "Cloud",
-    "name": "網盤",
+    "name": "雲端硬碟",
     "link": "https://cloud.lolicon.wtf/"
   },
   {
@@ -32,6 +32,6 @@
   {
     "icon": "LaptopCode",
     "name": "上線時間查詢",
-    "link": "https://status.lolicon.wtf/"
+    "link": "https://uptime.lolicon.wtf/"
   }
 ]
